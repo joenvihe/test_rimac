@@ -23,10 +23,11 @@ recommend(user_id) -> [top_recommended_product_id_1,
 
 1. Visit the [Instacart Market Basket Analysis](https://www.kaggle.com/competitions/instacart-market-basket-analysis) competition page on Kaggle. Read the details of the data and download it. _If you don’t have a Kaggle account, you will need to create one in order to download the data._
 2. You must use Python as the programming language to develop your solution in notebooks and/or Python modules, but you are free to use any open source libraries and tools.
-3. Solving this problem in production, at scale, is difficult. The intention behind this take home exercise is to see how you would approach building a quick solution to it (while learning new topics you may not be too familiar with), so **please timebox your efforts to ~6 hours**. We do not expect you to deliver production-quality code, but try to use best-practices when implementing your solution. _Tip: if you are running low on time, aim to have a suboptimal, but working solution. You can always walk us through your ideas to improve it in a follow-up meeting._
-4. **Submitting your solution**
+3. Solving this problem in production, at scale, is difficult. The intention behind this take home exercise is to see how you would approach building a quick solution to it (while learning new topics you may not be too familiar with), so **please timebox your efforts to ~6 hours**. We do not expect you to deliver production-quality code, but try to use best-practices when implementing your solution. _Tip: if you are running low on time, aim to have a suboptimal, but working solution.
+  
+**Submitting your solution**
 
-   - You have 72 hours to submit your solution from the moment you get access to this repository.
+   - 20/11/2023 The limit date to submit your solution from the moment you get access to this repository.
    - Once you’re happy with your solution, submit it by raising a pull request in this repo, adding `joenvihe` as a reviewer. Please include all the notebooks and/or modules you end up writing, and include instructions to run your solution.
    - **Stretch goal:** You will get bonus points if you include a bare-bones web app as part of your solution. The wep app should take a user ID as input and display two lists:
      - The top N products recommended for the user by the recommender system, and
@@ -38,4 +39,4 @@ recommend(user_id) -> [top_recommended_product_id_1,
 - If you can submit a working solution, or how close you get to it.
 - How well you structure your solution.
 - Your ideas to improve your solution if you were tasked with productionizing it at scale.
-- Any ideas you may have to use this type of system in Yape.
+- Any ideas you may have to use this type of system.
