@@ -24,6 +24,7 @@ recommend(user_id) -> [top_recommended_product_id_1,
 1. Visit the [Instacart Market Basket Analysis](https://www.kaggle.com/competitions/instacart-market-basket-analysis) competition page on Kaggle. Read the details of the data and download it. _If you don’t have a Kaggle account, you will need to create one in order to download the data._
 2. You must use Python as the programming language to develop your solution in notebooks and/or Python modules, but you are free to use any open source libraries and tools.
 3. Solving this problem in production, at scale, is difficult. The intention behind this take home exercise is to see how you would approach building a quick solution to it (while learning new topics you may not be too familiar with), so **please timebox your efforts to ~6 hours**. We do not expect you to deliver production-quality code, but try to use best-practices when implementing your solution. _Tip: if you are running low on time, aim to have a suboptimal, but working solution.
+4. Fork the repository and then submit a pull request to share your changes with us.
   
 **Submitting your solution**
 
