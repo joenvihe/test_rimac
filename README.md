@@ -1,6 +1,6 @@
 ## Context
 
-The purpose of this exercise is to assess how you would go about building a recommender system using a real-world data set [provided by Instacart](https://www.kaggle.com/c/instacart-market-basket-analysis/data). It is meant to give you a taste of a type of problem that you would work on as part of our team, and to give us an idea of how you would approach tackling it.
+The purpose of this exercise is to assess how you would go about building a clasification system using a  [Kaggle heart disease](https://www.kaggle.com/code/kaanboke/beginner-friendly-catboost-with-optuna/notebook) . It is meant to give you a taste of a type of problem that you would work on as part of our team, and to give us an idea of how you would approach tackling it.
 
 ## Problem statement
 
@@ -36,9 +36,6 @@ The system should return if the user will have a heart disease.
 
    - 20/11/2023 is the last day of submission.
    - Once you’re happy with your solution, submit it by raising a pull request in this repo, adding `joenvihe` as a reviewer. Please include all the notebooks and/or modules you end up writing, and include instructions to run your solution.
-   - **Stretch goal:** You will get bonus points if you include a bare-bones web app as part of your solution. The web app should take a user ID as input and display two lists:
-     - The top N products recommended for the user by the recommender system, and
-     - The last M products purchased by the user.
 
 ## What we will evaluate
 
