@@ -1,7 +1,6 @@
-'''Para la creacion del api utilizaremos el formato de paciente nuevo, el cual se identificara con id
-el cual sera unico para cada uno, y utilizando el modelo de prediccion '''
-import joblib
 from flask import Flask, request, jsonify
+import joblib
+import pandas as pd
 
 app = Flask(__name__)
 
@@ -12,13 +11,23 @@ model = joblib.load('modelo_riesgo_cardiaco.joblib')
 def predict():
     try:
         # Obtener datos del cuerpo de la solicitud POST
-        data = request.get_json(force=True)
+        data = request.json
 
-        # Realizar la predicción utilizando el modelo cargado
-        result = predict_heart_disease(model, data)
+        # Convertir los datos a un DataFrame de pandas (ajusta las columnas según tu modelo)
+        features = pd.DataFrame(data, index=[0])
+       
+        # Realizar la predicción
+        prediction = model.predict(features)
 
-        # Devolver el resultado como JSON
-        return jsonify(result)
+        msg = ""
+
+        if prediction[0] == 1:
+            msg = 'Tiene riesgo de ataque cardíaco'
+        else:
+            msg = 'No tiene riesgo de ataque cardíaco'
+
+        # Retornar la respuesta
+        return jsonify({'prediccion': msg})
 
     except Exception as e:
         return jsonify({'error': str(e)})
