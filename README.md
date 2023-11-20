@@ -1,46 +1,78 @@
-## Context
+# Nombre del Proyecto
+Creacion de Api utilizando CATBOOST with OPTUNA.
+## Introducción
+La premisa inicial del reto planteado era utilizar el algoritmo de clasificación CATBOOST para predecir, utilizando datos de nuevos usuarios, si la persona podría sufrir de alguna enfermedad cardíaca.
+El modelo se entrenó en base a un dataset llamado heart.csv que contenía diversa información acerca de características de personas que presentaban o no alguna enfermedad cardíaca. Al ser el algoritmo CATBOOST el de mayor precisión, se utilizó este mismo para la elaboración de la API.
 
-The purpose of this exercise is to assess how you would go about building a clasification system using a  [Kaggle heart disease](https://www.kaggle.com/code/kaanboke/beginner-friendly-catboost-with-optuna/notebook) . It is meant to give you a taste of a type of problem that you would work on as part of our team, and to give us an idea of how you would approach tackling it.
 
-## Problem statement
+## Tecnologías Utilizadas
+- Flask
+- Firebase
+- OpenAI API
+- Circuit breaker
+- Sklearn
+- html/css
+- Pandas/nunpy
 
-Your goal is to use the data from the [Kaggle heart disease](https://www.kaggle.com/code/kaanboke/beginner-friendly-catboost-with-optuna/notebook) to develop a clasification system that predicts the user will have heart disease.
+## Desarrollo de la api
+Como punto de partida, basé la creación de mi API en el funcionamiento de una clínica de análisis, ya que estas te brindan todos los resultados biológicos que posees para posteriormente ser diagnosticado por un doctor. En este caso, mi API procesaba los datos y el algoritmo te predecía si tenías riesgo cardíaco. Esta premisa nos acompañará durante toda la realización de la API.
 
-Conceptually, for a given the next ferature.
+### Subsección 1: Lectura de el algoritmo CATBOOST
+En la página donde se explica cómo funciona el algoritmo, nos brindan la explicación del modelo, el código y la forma de entrenamiento de CATBOOST, esto se replica y coloca en el archivo de Jupyter modelo_riesgo_cardiaco, el cual lo utilizaremos para nuestra posterior API. En el contenido del archivo, podemos ver la data que usaremos, el modelo de predicción otorgado, y algunas pruebas con data para corroborar su correcto funcionamiento.
 
-```python
-1. Age: age of the patient [years]
-2. Sex: sex of the patient [M: Male, F: Female]
-3. ChestPainType: chest pain type [TA: Typical Angina, ATA: Atypical Angina, NAP: Non-Anginal Pain, ASY: Asymptomatic]
-4. RestingBP: resting blood pressure [mm Hg]
-5. Cholesterol: serum cholesterol [mm/dl]
-6. FastingBS: fasting blood sugar [1: if FastingBS > 120 mg/dl, 0: otherwise]
-7. RestingECG: resting electrocardiogram results [Normal: Normal, ST: having ST-T wave abnormality (T wave inversions and/or ST elevation or depression of > 0.05 mV), LVH: showing probable or definite left ventricular hypertrophy by Estes' criteria]
-8. MaxHR: maximum heart rate achieved [Numeric value between 60 and 202]
-9. ExerciseAngina: exercise-induced angina [Y: Yes, N: No]
-10. Oldpeak: oldpeak = ST [Numeric value measured in depression]
-11. ST_Slope: the slope of the peak exercise ST segment [Up: upsloping, Flat: flat, Down: downsloping]
-```
-The system should return if the user will have a heart disease.
+### Subsección 2: Creacion inicial de la api 
+Para poder avanzar y seguir con la creación de la API, utilicé la librería joblib, la cual nos permite cargar datos de un archivo Jupyter e implementarlo en un archivo .py, lo cual era clave para poder continuar con el desarrollo de la API.
 
-## Instructions
+Para la primera parte de la API, desarrollamos un endpoint inicial que recibía los datos en formato JSON; estos datos eran convertidos en un DataFrame para su análisis mediante nuestro modelo previamente entrenado, determinando si el individuo poseía alguna enfermedad cardíaca.
 
-> These instructions are not overly prescriptive by design: we want to provide you enough details so you know what we expect, while also giving you freedom to choose how you tackle the problem.
+Este proceso se validó utilizando la aplicación Visual Studio Code con la extensión Thunder Client, que facilita la realización de solicitudes de manera sencilla, como se muestra en la imagen siguiente.
 
-1. Visit the [Kaggle heart disease](https://www.kaggle.com/code/kaanboke/beginner-friendly-catboost-with-optuna/notebook) page on Kaggle. Read the details of the data and download it. _If you don’t have a Kaggle account, you will need to create one in order to download the data._
-2. You must use Python as the programming language to develop your solution in notebooks and/or Python modules, but you are free to use any open source libraries and tools.
-3. Fork the repository to develop your solution.
-4. Solving this problem in production, at scale, is difficult. The intention behind this take home exercise is to see how you would approach building a quick solution to it (while learning new topics you may not be too familiar with). We do not expect you to deliver production-quality code, but try to use best-practices when implementing your solution. _Tip: if you are running low on time, aim to have a suboptimal, but working solution.
-  
-**Submitting your solution**
+![Valor Agregado](Rodrigo_Carlos_Acosta/images/image1.png)
 
-   - 20/11/2023 is the last day of submission.
-   - Once you’re happy with your solution, submit it by raising a pull request in this repo, adding `joenvihe` as a reviewer. Please include all the notebooks and/or modules you end up writing, and include instructions to run your solution.
+Con este resultado ya teniamos resuelto la problematica iniciar, ya que recibiamos un jason de data y el modelo entrenado te predecia sus problemas cardiacos, sin embargo un modelo asi no era muy intituivo, y sin la aplicacion utilizada de visual code seria muy engorroso llevar esa data a ser predecida, por lo cual agregamos una estrategia mas
 
-## What we will evaluate
+### Subsección 3: Valor Agregado Interfaz de usuario intuitiva
+Al tener una problemática planteada anteriormente, decidí llevar la data a un front sencillo, el cual sería de la forma de un formulario, donde sería más intuitivo para la persona el ingreso de la data y su posterior predicción.
 
-- Your overall approach to tackling the problem.
-- If you can submit a working solution, or how close you get to it.
-- How well you structure your solution.
-- Maintainability of your solution.
-- Best practices
+![Front sencillo](Rodrigo_Carlos_Acosta/images/imagen2.png)
+
+y posteriormente el resultado tmb se muestra:
+
+![Front sencillo](Rodrigo_Carlos_Acosta/images/imagen3.png)
+
+ 
+### Subsección 3: Valor Agregado  almacenamiento de datos 
+
+Como tenía pensado resolver esta problemática como una especie de clínica donde los pacientes podrían dejar sus resultados y que el algoritmo de clasificación sería el que interprete estos mismos, necesitaba guardar la data para que las personas puedan ver sus resultados posteriormente, si bien apenas recibe la data el modelo te libera la prediccion, este tambien guarda esa data para que funcione como una especie de historial medico en el cual ver la evolucion de sus resultados.Asimismo se mejoro el front, para verse de una mejor manera.
+A continuacion mostramos como se guarda la data en firebase:
+
+![base de datos](Rodrigo_Carlos_Acosta/images/imagen4.png)
+
+Como podemos observar, se guarda el nombre del usuario, la predicción en este caso si es 1 o 0, y también si tiene riesgo de problema cardíaco; la recomendación es un extra que veremos en el siguiente punto
+
+Tambien observaremos la mejoria del front, y la nueva casilla en la cual si ya tenemos resultados en la base de datos podemos verlos cuando querramos.
+![Mejoria del front](Rodrigo_Carlos_Acosta/images/imagen5.png)
+
+![Mejoria del front](Rodrigo_Carlos_Acosta/images/imagen6.png)
+
+### Subsección 3: Valor Agregado  Integracion con Open AI 
+Para el último valor agregado, decidí utilizar el API key de OpenAI, que proporciona una recomendación personalizada dependiendo de si el resultado indica que podrías tener problemas de corazón. Esta recomendación se almacena en la base de datos y está disponible para el usuario solo cuando consulta sus resultados, funcionando como una especie de consejo médico virtual.
+
+En resumen,se integró una clave de API de OpenAI para ofrecer recomendaciones personalizadas que se almacenan en la base de datos, funcionando como un consejo médico virtual.
+
+![consulta](Rodrigo_Carlos_Acosta/images/imagen7.png)
+
+## Uso
+-Primero, es necesario ejecutar el Jupyter Notebook llamado prediction_explanation_and_test, ya que este carga el modelo de riesgo cardíaco, el cual es fundamental para el correcto funcionamiento de la API.
+-Después, se debe iniciar el servidor Flask desde la carpeta Rodrigo_Carlos_Acosta, asegurándose de que no haya problemas con las credenciales de Firebase en credenciales.json.
+
+-Por último, ponga la data analizar y, a continuación, retroceda a la página anterior para buscar su información, lo cual debería funcionar de manera correcta.
+
+
+## Conclusiones
+-La construcción de esta API ha sido un ejercicio integral de desarrollo de software y ciencia de datos.Esto ocurre cuando se juntan ambos mundos
+-Se considera que no sea recomdable seguir el consejo de una ia que aprende, sin embargo creo que el data set tiene mucha correlacion entre sus variables, premitiendo una correcta interpretacion y confiabilidad de los resultados.
+
+## Autor
+- Rodrigo Carlos Acosta
+
