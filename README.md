@@ -1,46 +1,96 @@
-## Context
+# Heart Failure Prediction Project
 
-The purpose of this exercise is to assess how you would go about building a clasification system using a  [Kaggle heart disease](https://www.kaggle.com/code/kaanboke/beginner-friendly-catboost-with-optuna/notebook) . It is meant to give you a taste of a type of problem that you would work on as part of our team, and to give us an idea of how you would approach tackling it.
+## Overview
 
-## Problem statement
+This project focuses on predicting Heart Failure using advanced machine learning models and the develop of an API in Google Cloud Platform. The predictive model attains an impressive accuracy score of 0.88, showcasing its efficacy in healthcare analytics.
 
-Your goal is to use the data from the [Kaggle heart disease](https://www.kaggle.com/code/kaanboke/beginner-friendly-catboost-with-optuna/notebook) to develop a clasification system that predicts the user will have heart disease.
+## API Development
 
-Conceptually, for a given the next ferature.
+To enhance accessibility and real-world usability, an intuitive API has been meticulously developed using FastAPI. This API is designed to seamlessly integrate with external applications or services, providing a convenient interface for Heart Failure predictions.
 
-```python
-1. Age: age of the patient [years]
-2. Sex: sex of the patient [M: Male, F: Female]
-3. ChestPainType: chest pain type [TA: Typical Angina, ATA: Atypical Angina, NAP: Non-Anginal Pain, ASY: Asymptomatic]
-4. RestingBP: resting blood pressure [mm Hg]
-5. Cholesterol: serum cholesterol [mm/dl]
-6. FastingBS: fasting blood sugar [1: if FastingBS > 120 mg/dl, 0: otherwise]
-7. RestingECG: resting electrocardiogram results [Normal: Normal, ST: having ST-T wave abnormality (T wave inversions and/or ST elevation or depression of > 0.05 mV), LVH: showing probable or definite left ventricular hypertrophy by Estes' criteria]
-8. MaxHR: maximum heart rate achieved [Numeric value between 60 and 202]
-9. ExerciseAngina: exercise-induced angina [Y: Yes, N: No]
-10. Oldpeak: oldpeak = ST [Numeric value measured in depression]
-11. ST_Slope: the slope of the peak exercise ST segment [Up: upsloping, Flat: flat, Down: downsloping]
-```
-The system should return if the user will have a heart disease.
+## Deployment on Google Cloud Platform
 
-## Instructions
+The entire system is deployed on the robust infrastructure of Google Cloud Platform (GCP). This cloud-based deployment ensures scalability, reliability, and efficient management of computational resources. Leveraging GCP's services, the API is hosted in a manner that guarantees optimal performance and availability.
 
-> These instructions are not overly prescriptive by design: we want to provide you enough details so you know what we expect, while also giving you freedom to choose how you tackle the problem.
+## Development of the ML model
 
-1. Visit the [Kaggle heart disease](https://www.kaggle.com/code/kaanboke/beginner-friendly-catboost-with-optuna/notebook) page on Kaggle. Read the details of the data and download it. _If you don’t have a Kaggle account, you will need to create one in order to download the data._
-2. You must use Python as the programming language to develop your solution in notebooks and/or Python modules, but you are free to use any open source libraries and tools.
-3. Fork the repository to develop your solution.
-4. Solving this problem in production, at scale, is difficult. The intention behind this take home exercise is to see how you would approach building a quick solution to it (while learning new topics you may not be too familiar with). We do not expect you to deliver production-quality code, but try to use best-practices when implementing your solution. _Tip: if you are running low on time, aim to have a suboptimal, but working solution.
-  
-**Submitting your solution**
+My approach for this project was the correct preprocessing of the data. In order to do this, I've analyzed all categorical and numerical variables from our dataset. After that, I plotted different statistical graphics for the guarantee that our data is correctly clean. So, I used Pycaret to compare and get the best model for our problem. In this case, the two best models was Gradient Boosting and Random Forest Classification. After implementing those models using sklearn, we have selected Random Forest Classification because it shows a better performance in all metrics. After fine-tuning we've got an accuracy of 0.88.
+Relevant images and statistical data are showed below:
+![testing](images/info1.png)
+![accuracy](images/rf1.png)
 
-   - 20/11/2023 is the last day of submission.
-   - Once you’re happy with your solution, submit it by raising a pull request in this repo, adding `joenvihe` as a reviewer. Please include all the notebooks and/or modules you end up writing, and include instructions to run your solution.
+In [notebooks](notebooks) directory, you will see 3 notebooks. [modelo.ipynb](notebooks/modelo.ipynb) represents the model based on Pycaret, and [gbc.ipynb](notebooks/gbc.ipynb) and [rf.ipynb](notebooks/rf.ipynb) represents the Gradient Boosting and Random Forest Classification. You can choose any of the 3 nootebooks to run and test in [app.py](app.py).
+## Running the Project
 
-## What we will evaluate
+There are two options for running the project: locally and on GCP(Google Cloud Platform).
 
-- Your overall approach to tackling the problem.
-- If you can submit a working solution, or how close you get to it.
-- How well you structure your solution.
-- Maintainability of your solution.
-- Best practices
+### Local Setup
+
+1. Create a virtual environment and install dependencies from `requirements.txt`:
+
+   ```bash
+   python -m venv venv
+   source venv/bin/activate      # On Windows, use "venv\Scripts\activate"
+   pip install -r requirements.txt
+
+2. Run the notebook to train the model:
+   ```bash
+   jupyter notebook modelo.ipynb
+
+3. Launch the FastAPI script using Uvicorn:
+   ```bash
+   uvicorn app:app --host 0.0.0.0 --port 8000 --reload
+4. Testing
+
+   You can test the API using tools like Swagger API from FastAPI, Postman or cURL. Here's an example using cURL:
+
+   ```bash
+   curl -X POST "http://127.0.0.1:8000/predict" -H "Content-Type: application/json" -d '{
+   "Age": 49,
+   "Sex": "F",
+   "ChestPainType": "NAP",
+   "RestingBP": 160,
+   "Cholesterol": 180,
+   "FastingBS": 0,
+   "RestingECG": "Normal",
+   "MaxHR": 156,
+   "ExerciseAngina": "N",
+   "Oldpeak": 1,
+   "ST_Slope": "Flat"
+   }'
+Also, here is an example using our Swagger:
+![testing](images/testing.png)
+![testing](images/testing1.png)
+
+### Test Google Cloud Run Service
+
+You can test the deployed Google Cloud Run service using cURL or Postman. This API was deployed on this link `https://default-service-xavw6nwqvq-tl.a.run.app/predict`.
+
+```bash
+curl -X POST -H "Content-Type: application/json" -d '{
+  "Age": 40,
+  "Sex": "M",
+  "ChestPainType": "ATA",
+  "RestingBP": 140,
+  "Cholesterol": 289,
+  "FastingBS": 0,
+  "RestingECG": "Normal",
+  "MaxHR": 172,
+  "ExerciseAngina": "N",
+  "Oldpeak": 0,
+  "ST_Slope": "Up",
+  "HeartDisease": 0
+}' https://default-service-xavw6nwqvq-tl.a.run.app/predict
+ ```
+Also, the docker container of this API has been deployed in GCP as we can see below:
+![proof](images/proof.png)
+### Test using Pytest
+
+You can test the API with the script [testing.py](testing.py). In this script, we guaranteed that our API works correctly and returns the correct result.
+So, you need to run
+
+  ```bash
+  pytest testing.py
+
+ ```
+
