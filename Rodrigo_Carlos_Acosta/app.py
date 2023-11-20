@@ -26,13 +26,13 @@ model = joblib.load('modelo_riesgo_cardiaco.joblib')
 def generar_recomendacion(datos_usuario):
     try:
         # Configuración de la API Key
-        client = OpenAI(api_key='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')
+        client = OpenAI(api_key='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')
         #Generamos el prompt para pedir recomiendaciones basados en la data que nos brindan
         chat_completion = client.chat.completions.create(
             messages=[
                 {
                     "role": "user",
-                    "content": f"Generar recomendaciones  de maximo 30 palabras diferentes  y breves de salud para un paciente con  {datos_usuario}"
+                    "content": f"Generar recomendaciones cada vez que te lo piden, que sean diferentes, variadas y breves de salud para un paciente con  {datos_usuario}, de maximo 10 palabras"
                 }
             ],
             model="gpt-3.5-turbo",
