@@ -63,16 +63,16 @@ En resumen,se integró una clave de API de OpenAI para ofrecer recomendaciones p
 ![consulta](Rodrigo_Carlos_Acosta/images/imagen7.png)
 
 ## Uso
--Primero, es necesario ejecutar el Jupyter Notebook llamado prediction_explanation_and_test, ya que este carga el modelo de riesgo cardíaco, el cual es fundamental para el correcto funcionamiento de la API.
--Después, se debe iniciar el servidor Flask desde la carpeta Rodrigo_Carlos_Acosta, asegurándose de que no haya problemas con las credenciales de Firebase en credenciales.json.
+- Primero, es necesario ejecutar el Jupyter Notebook llamado prediction_explanation_and_test, ya que este carga el modelo de riesgo cardíaco, el cual es fundamental para el correcto funcionamiento de la API.
+- Después, se debe iniciar el servidor Flask desde la carpeta Rodrigo_Carlos_Acosta, asegurándose de que no haya problemas con las credenciales de Firebase en credenciales.json.
 
--Por último, ponga la data analizar y, a continuación, retroceda a la página anterior para buscar su información, lo cual debería funcionar de manera correcta.
+- Por último, ponga la data analizar y, a continuación, retroceda a la página anterior para buscar su información, lo cual debería funcionar de manera correcta.
 
 
 ## Conclusiones
--La construcción de esta API ha sido un ejercicio integral de desarrollo de software y ciencia de datos.Esto ocurre cuando se juntan ambos mundos
--Se considera que no sea recomdable seguir el consejo de una ia que aprende, sin embargo creo que el data set tiene mucha correlacion entre sus variables, premitiendo una correcta interpretacion y confiabilidad de los resultados.
-
+- La construcción de esta API ha sido un ejercicio integral de desarrollo de software y ciencia de datos.Esto ocurre cuando se juntan ambos mundos.
+- Se considera que no sea recomdable seguir el consejo de una ia que aprende, sin embargo creo que el data set tiene mucha correlacion entre sus variables, premitiendo una correcta interpretacion y confiabilidad de los resultados.
+- Lo que mas demoraria al momento de predecir es la carga del open ai con el consejo, debido a que este depende de la velocidad del internet.
 ## Autor
 - Rodrigo Carlos Acosta
 

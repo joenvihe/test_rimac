@@ -32,12 +32,12 @@ def generar_recomendacion(datos_usuario):
             messages=[
                 {
                     "role": "user",
-                    "content": f"Generar recomendaciones  diferentes  y breves de salud para un paciente con  {datos_usuario}"
+                    "content": f"Generar recomendaciones  de maximo 30 palabras diferentes  y breves de salud para un paciente con  {datos_usuario}"
                 }
             ],
             model="gpt-3.5-turbo",
             temperature=0,
-            max_tokens=50 
+            max_tokens=30
         )
 
         # Extracción y devolución del texto generado
