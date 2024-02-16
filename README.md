@@ -34,7 +34,6 @@ The system should return if the user will have a heart disease.
   
 **Submitting your solution**
 
-   - 20/11/2023 is the last day of submission.
    - Once you’re happy with your solution, submit it by raising a pull request in this repo, adding `joenvihe` as a reviewer. Please include all the notebooks and/or modules you end up writing, and include instructions to run your solution.
 
 ## What we will evaluate
