@@ -1,1 +1,4 @@
 *.pyc 
+.env1/
+.vscode/
+analysis/
