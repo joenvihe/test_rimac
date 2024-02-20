@@ -2,3 +2,7 @@
 .env1/
 .vscode/
 analysis/
+david/model-package/dist/
+david/model-package/heart_dissease_classifier_dgcr.egg-info/
+david/api/.tox/*
+david/model-package/.tox

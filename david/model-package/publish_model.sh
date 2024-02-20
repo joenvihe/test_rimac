@@ -29,7 +29,11 @@ build() {
     python "$SETUP" sdist bdist_wheel || die "Building package $PACKAGE_NAME failed"
     for X in $(ls dist)
     do
-        curl -F package=@"dist/$X" "$GEMFURY_URL" || die "Uploading package $PACKAGE_NAME failed on file dist/$X"
+        # curl -F package=@"dist/$X" "$GEMFURY_URL" || die "Uploading package $PACKAGE_NAME failed on file dist/$X"
+        echo "[pypi]
+        username = __token__
+        password = pypi-AgEIcHlwaS5vcmcCJGUyOWEyNWZlLWYwNzQtNGYxYy1iMTQ5LWUzMDA4N2I3Mjg4MgACKlszLCI1ZjUyOWZlNS01NDA4LTQ2OWEtOTUxNy1kYWFkODJmZWY0ODciXQAABiDZ0EJJbDo7m4N9PwSeruxfW3GKIHaQ8iBppSiHZHNuRw" > ~/.pypirc
+        twine upload -r pypi dist/*
     done
 }
 
