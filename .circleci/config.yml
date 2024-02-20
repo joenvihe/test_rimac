@@ -72,7 +72,7 @@ jobs:
           command: |
             tox
       - run:
-          name: Publish model to Gemfury
+          name: Publish model
           command: |
             chmod +x ./publish_model.sh
             tox -e publish_model
