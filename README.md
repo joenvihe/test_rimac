@@ -43,3 +43,4 @@ The system should return if the user will have a heart disease.
 - How well you structure your solution.
 - Maintainability of your solution.
 - Best practices
+small changes
