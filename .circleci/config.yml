@@ -101,8 +101,8 @@ jobs:
             eval $(aws ecr get-login --no-include-email --region us-east-1)
             pwd
             ls .
-            chmod +x ./david/api/build_docker_image_aws.sh
-            ./david/api/build_docker_image_aws.sh
+            chmod +x ./david/build_docker_image_aws.sh
+            ./david/build_docker_image_aws.sh
 
 tags_only: &tags_only
   filters:
