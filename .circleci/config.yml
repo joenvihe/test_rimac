@@ -96,7 +96,6 @@ jobs:
       - run:
           name: Publishing docker image to aws ECR
           command: |
-            . venv/bin/activate
             sudo pip install awscli
             eval $(aws ecr get-login --no-include-email --region us-east-1)
             chmod +x ./build_docker_image_aws.sh
@@ -125,9 +124,7 @@ workflows:
       # upload after git tags are created
       - test_and_upload_model:
           <<: *tags_only
-      - publish_docker_image_to_aws:
-          requires:
-            - test_app
+      - publish_docker_image_to_aws
       # - section_08_deploy_app_container_via_railway:
       #    filters:
       #      branches:
