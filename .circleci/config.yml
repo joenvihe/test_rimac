@@ -96,6 +96,7 @@ jobs:
       - run:
           name: Publishing docker image to aws ECR
           command: |
+            . venv/bin/activate
             sudo pip3 install awscli
             eval $(aws ecr get-login --no-include-email --region us-east-1)
             chmod +x ./build_docker_image_aws.sh
