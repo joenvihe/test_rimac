@@ -8,7 +8,7 @@ WORKDIR /opt/api
 # ARG PIP_EXTRA_INDEX_URL
 
 # Install requirements, including from Gemfury
-ADD /api /opt/api/
+ADD ./david/api /opt/api/
 RUN pip install --upgrade pip
 RUN pip install -r /opt/api/requirements.txt
 
