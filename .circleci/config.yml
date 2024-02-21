@@ -114,14 +114,14 @@ workflows:
   deploy_pipeline:
     jobs:
       - test_app
-      - section_07_deploy_app_to_railway:
-          requires:
-            - test_app
-          filters:
-            branches:
-              only:
-                - master
-                - demo
+      # - section_07_deploy_app_to_railway:
+      #     requires:
+      #       - test_app
+      #     filters:
+      #       branches:
+      #         only:
+      #           - master
+      #           - demo
       # upload after git tags are created
       - test_and_upload_model:
           <<: *tags_only
