@@ -1,6 +1,6 @@
 #!/bin/bash
 
-docker build -t heart-dissease-prediction-api:latest . -f ./david/dockerfile
+docker build -t heart-dissease-prediction-api:latest . -f david/Dockerfile
 docker images
 docker tag heart-dissease-prediction-api:latest 656662427506.dkr.ecr.us-east-1.amazonaws.com/heart-disease-api-ecr-repo/heart-dissease-prediction-api:latest
 
