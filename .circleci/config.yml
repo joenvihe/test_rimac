@@ -100,7 +100,7 @@ jobs:
             pip install awscli
             eval $(aws ecr get-login --no-include-email --region us-east-1)
             chmod +x ./build_docker_image_aws.sh
-            ./scripts/publish_model.sh
+            ./build_docker_image_aws.sh
 
 tags_only: &tags_only
   filters:
