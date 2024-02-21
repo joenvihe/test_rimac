@@ -99,6 +99,8 @@ jobs:
             . venv/bin/activate
             pip install awscli
             eval $(aws ecr get-login --no-include-email --region us-east-1)
+            pwd
+            ls .
             chmod +x ./build_docker_image_aws.sh
             ./build_docker_image_aws.sh
 
