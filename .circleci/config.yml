@@ -109,9 +109,12 @@ jobs:
     working_directory: ~/project/david/api
     steps:
       - checkout
+      - *prepare_venv
       - run:
           name: Getting API url
           command: |
+            . venv/bin/activate
+            pip install awscli
             chmod +x ./david/get-public-api.sh
             ./david/get-public-api.sh heart-dissease-app-ecs-cluster
 
