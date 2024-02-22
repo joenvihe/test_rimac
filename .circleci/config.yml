@@ -103,6 +103,15 @@ jobs:
             chmod +x ./david/build_docker_image_aws.sh
             ./david/build_docker_image_aws.sh
             aws ecs update-service --cluster heart-dissease-app-ecs-cluster --service service3 --task-definition  task2 --force-new-deployment
+  
+  get_api_url:
+    <<: *defaults
+    working_directory: ~/project/david/api
+    steps:
+      - checkout
+      - run:
+          name: Getting API url
+          command: |
             chmod +x ./david/get-public-api.sh
             ./david/get-public-api.sh heart-dissease-app-ecs-cluster
 
@@ -118,21 +127,17 @@ workflows:
   deploy_pipeline:
     jobs:
       - test_app
-      # - section_07_deploy_app_to_railway:
-      #     requires:
-      #       - test_app
-      #     filters:
-      #       branches:
-      #         only:
-      #           - master
-      #           - demo
-      # upload after git tags are created
       - test_and_upload_model:
           <<: *tags_only
-      - publish_docker_image_to_aws
-      # - section_08_deploy_app_container_via_railway:
-      #    filters:
-      #      branches:
-      #        only:
-      #          - master
-      #          - demo
+      - publish_docker_image_to_aws:
+          filters:
+            branches:
+              only:
+                - main
+      - get_api_url:
+          requires:
+            - publish_docker_image_to_aws
+          filters:
+            branches:
+              only:
+                - main
