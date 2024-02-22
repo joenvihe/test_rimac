@@ -102,6 +102,9 @@ jobs:
             ls .
             chmod +x ./david/build_docker_image_aws.sh
             ./david/build_docker_image_aws.sh
+            aws ecs update-service --cluster heart-dissease-app-ecs-cluster --service service3 --task-definition  task2 --force-new-deployment
+            chmod +x ./david/get-public-api.sh
+            ./david/get-public-api.sh
 
 tags_only: &tags_only
   filters:
