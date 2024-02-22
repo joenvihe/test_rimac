@@ -17,8 +17,8 @@ steps:
    - 'us-central1'
    - '--allow-unauthenticated'
 
-# images:
-# - 'us-central1-docker.pkg.dev/heartdisease-414803/repositorio1/my-first-repo:$COMMIT_SHA'
+images:
+- 'us-central1-docker.pkg.dev/heartdisease-414803/repositorio1/my-first-repo:$COMMIT_SHA'
 
 options:
   logging: CLOUD_LOGGING_ONLY
