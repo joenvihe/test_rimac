@@ -17,6 +17,7 @@ def index():
 def predict():
     return {'wait': 64}
 
+
 @app.get('/load_data')
 def load_datos():
 
