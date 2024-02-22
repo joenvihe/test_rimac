@@ -104,7 +104,7 @@ jobs:
             ./david/build_docker_image_aws.sh
             aws ecs update-service --cluster heart-dissease-app-ecs-cluster --service service3 --task-definition  task2 --force-new-deployment
             chmod +x ./david/get-public-api.sh
-            ./david/get-public-api.sh
+            ./david/get-public-api.sh heart-dissease-app-ecs-cluster
 
 tags_only: &tags_only
   filters:
