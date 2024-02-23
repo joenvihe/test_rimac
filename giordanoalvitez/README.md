@@ -1,3 +1,4 @@
+![](mlops-heart.png)
 # Heart Disease Detection System
 This project aims to detect heart disease using Machine Learning. It uses GPC, Github, python and python libraries to build and mantain Machine Learning. 
 
