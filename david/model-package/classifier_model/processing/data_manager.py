@@ -7,7 +7,24 @@ from sklearn.pipeline import Pipeline
 
 from classifier_model import __version__ as _version
 from classifier_model.config.core import DATASET_DIR, TRAINED_MODEL_DIR, config
+import boto3
+import io
 
+def load_from_s3(filename: str) -> pd.DataFrame:
+    REGION = 'us-east-1'
+    ACCESS_KEY_ID = 'AKIAZRZBBO5ZHCDQ64VF'
+    SECRET_ACCESS_KEY = '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'
+    BUCKET_NAME = 'heart-dissease-data-bucket'
+    KEY = f'/{filename}s'
+    s3c = boto3.client(
+        's3', 
+        region_name = REGION,
+        aws_access_key_id = ACCESS_KEY_ID,
+        aws_secret_access_key = SECRET_ACCESS_KEY
+    )
+    obj = s3c.get_object(Bucket=BUCKET_NAME , Key=KEY)
+    dataframe = pd.read_csv(io.BytesIO(obj['Body'].read()), encoding='utf8')
+    return dataframe
 
 def load_dataset(*, file_name: str) -> pd.DataFrame:
     dataframe = pd.read_csv(Path(f"{DATASET_DIR}/{file_name}"))

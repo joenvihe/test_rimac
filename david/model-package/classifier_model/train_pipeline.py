@@ -1,7 +1,7 @@
 import numpy as np
 from config.core import config
 from pipeline import heart_pipe
-from processing.data_manager import load_dataset, save_pipeline
+from processing.data_manager import load_dataset, save_pipeline, load_from_s3
 from sklearn.model_selection import train_test_split
 
 
@@ -20,7 +20,8 @@ def run_training() -> None:
             random_state=config.model_config.random_state,
         )
     else:
-        data = load_dataset(file_name=config.app_config.training_data_file)
+        # data = load_dataset(file_name=config.app_config.training_data_file)
+        data = load_from_s3(file_name=config.app_config.training_data_file)
         X_train = data[config.model_config.features]
         y_train = data[config.model_config.target]
     # fit model

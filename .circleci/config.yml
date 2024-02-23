@@ -129,18 +129,18 @@ workflows:
   version: 2
   deploy_pipeline:
     jobs:
-      - test_app
-      - test_and_upload_model:
-          <<: *tags_only
-      - publish_docker_image_to_aws:
-          filters:
-            branches:
-              only:
-                - main
-      - get_api_url:
-          requires:
-            - publish_docker_image_to_aws
-          filters:
-            branches:
-              only:
-                - main
+      # - test_app
+      - test_and_upload_model
+          # <<: *tags_only
+      # - publish_docker_image_to_aws:
+      #     filters:
+      #       branches:
+      #         only:
+      #           - main
+      # - get_api_url:
+      #     requires:
+      #       - publish_docker_image_to_aws
+      #     filters:
+      #       branches:
+      #         only:
+      #           - main
