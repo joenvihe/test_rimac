@@ -110,7 +110,6 @@ jobs:
             ls .
             chmod +x ./david/build_docker_image_aws.sh
             ./david/build_docker_image_aws.sh
-            aws ecs update-service --cluster heart-dissease-app-ecs-cluster --service service3 --task-definition  task2 --force-new-deployment
   
   get_api_url:
     <<: *defaults
