@@ -10,12 +10,12 @@ from classifier_model.config.core import DATASET_DIR, TRAINED_MODEL_DIR, config
 import boto3
 import io
 
-def load_from_s3(filename: str) -> pd.DataFrame:
+def load_from_s3(file_name: str) -> pd.DataFrame:
     REGION = 'us-east-1'
     ACCESS_KEY_ID = 'AKIAZRZBBO5ZHCDQ64VF'
     SECRET_ACCESS_KEY = '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'
     BUCKET_NAME = 'heart-dissease-data-bucket'
-    KEY = f'/{filename}s'
+    KEY = f'/{file_name}s'
     s3c = boto3.client(
         's3', 
         region_name = REGION,
