@@ -11,4 +11,5 @@ docker push 656662427506.dkr.ecr.us-east-1.amazonaws.com/heart-disease-api-ecr-r
 
 # aws ecs update-service --cluster heart-dissease-app-ecs-cluster --service service3 --task-definition  task2 --force-new-deployment
 aws ecs update-service --cluster heart-dissease-app-ecs-cluster --service service3 --desired-count 0 
+sleep 20
 aws ecs update-service --cluster heart-dissease-app-ecs-cluster --service service3 --desired-count 1
