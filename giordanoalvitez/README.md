@@ -9,3 +9,6 @@ The project consists of 5 directories:
 - frontend: to build and deploy the interface in Streamlit Cloud.
 - training: to traing and save models continuously using Composer.
 - fuentes: CSV file datasets
+
+### Arquitectura de Sistema de detección de cardiopatia
+![](arquitectura_heart.png)
