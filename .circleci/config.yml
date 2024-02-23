@@ -53,12 +53,20 @@ jobs:
       #     name: Fetch the data
       #     command: |
       #       tox -e fetch_data
+      # - run:
+      #     name: Test the model
+      #     command: |
+      #       tox
+      - run:
+          name: Train the model
+          command: |
+            tox -e train
       - run:
           name: Test the model
           command: |
-            tox
+            tox -e test_package
       - run:
-          name: Publish model
+          name: Publish the model
           command: |
             chmod +x ./publish_model.sh
             tox -e publish_model
