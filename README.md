@@ -12,3 +12,4 @@ This project presents a classifier to predict heart dissease usig the Kaggle dat
 
 ## Solution Architecture
 
+![alt text](/david/architecture.png?raw=true)
